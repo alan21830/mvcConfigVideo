@@ -1,6 +1,9 @@
-/Users/macmac/Desktop/aledoc/configMVC/src/main/java/configMVC/configuration/JdbcConfig.java
-/Users/macmac/Desktop/aledoc/configMVC/src/main/java/configMVC/controller/HomeController.java
-/Users/macmac/Desktop/aledoc/configMVC/src/main/java/configMVC/configuration/DispatcherServlet.java
-/Users/macmac/Desktop/aledoc/configMVC/src/main/java/configMVC/configuration/WebApplicationsContextConfig.java
-/Users/macmac/Desktop/aledoc/configMVC/src/main/java/configMVC/repository/UtentiRepository.java
-/Users/macmac/Desktop/aledoc/configMVC/src/main/java/configMVC/model/Utenti.java
+C:\Users\A0000\git\mvcConfigVideo\src\main\java\configMVC\configuration\HibernateConfig.java
+C:\Users\A0000\git\mvcConfigVideo\src\main\java\configMVC\repository\UtentiRepositoryJPA.java
+C:\Users\A0000\git\mvcConfigVideo\src\main\java\configMVC\configuration\JdbcConfig.java
+C:\Users\A0000\git\mvcConfigVideo\src\main\java\configMVC\services\UtentiServices.java
+C:\Users\A0000\git\mvcConfigVideo\src\main\java\configMVC\controller\HomeController.java
+C:\Users\A0000\git\mvcConfigVideo\src\main\java\configMVC\configuration\WebApplicationsContextConfig.java
+C:\Users\A0000\git\mvcConfigVideo\src\main\java\configMVC\configuration\DispatcherServlet.java
+C:\Users\A0000\git\mvcConfigVideo\src\main\java\configMVC\model\Utenti.java
+C:\Users\A0000\git\mvcConfigVideo\src\main\java\configMVC\repository\UtentiRepository.java

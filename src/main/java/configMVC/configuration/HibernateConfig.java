@@ -49,7 +49,7 @@ public class HibernateConfig {
 		
 		hibernateJpaVendorAdapter.setShowSql(true);
 		hibernateJpaVendorAdapter.setGenerateDdl(false);
-		hibernateJpaVendorAdapter.setDatabasePlatform("org.hibernate.dialect.SQLServerDialect");
+		hibernateJpaVendorAdapter.setDatabasePlatform("org.hibernate.dialect.MySQL8Dialect");
 
 		return hibernateJpaVendorAdapter;
 	}
@@ -63,7 +63,7 @@ public class HibernateConfig {
 		Properties jpaProperties = new Properties();
 		
 		jpaProperties.put("javax.persistence.schema-generation.database.action", "none");
-		jpaProperties.put("hibernate.dialect", "org.hibernate.dialect.SQLServerDialect");
+		jpaProperties.put("hibernate.dialect", "org.hibernate.dialect.MySQL8Dialect");
 		jpaProperties.put("hibernate.show_sql", "true");
 		jpaProperties.put("hibernate.format_sql","true");
 
