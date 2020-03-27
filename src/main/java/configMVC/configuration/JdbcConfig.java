@@ -29,9 +29,9 @@ public class JdbcConfig {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
 		
 		dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
-		dataSource.setUrl("jdbc:mysql://remotemysql.com:3306/hGIgroCrUh?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=CET");
-		dataSource.setUsername("hGIgroCrUh");
-		dataSource.setPassword("VMmKWoqFPL");
+		dataSource.setUrl("jdbc:mysql://remotemysql.com:3306/kYrbxcBsvQ?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=CET");
+		dataSource.setUsername("kYrbxcBsvQ");
+		dataSource.setPassword("pybfqMb9C7");
 		
 		return dataSource;
 	}
