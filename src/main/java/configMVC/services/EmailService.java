@@ -1,8 +1,12 @@
 package configMVC.services;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -14,13 +18,17 @@ public class EmailService {
     @Autowired
     private SimpleMailMessage preConfiguredMessage;
     
-    public void sendMail(String to, String subject, String body) 
+    public void sendMail(String to, String subject, String body) throws MessagingException 
     {
-        SimpleMailMessage message = new SimpleMailMessage();
-        message.setTo(to);
-        message.setSubject(subject);
-        message.setText(body);
-        mailSender.send(message);
+    	
+    	 MimeMessage messagem = mailSender.createMimeMessage();
+    	 MimeMessageHelper helper;
+    	 helper = new MimeMessageHelper(messagem, true);
+    	 
+         helper.setTo(to);
+         helper.setText(body, true);
+    	 
+        mailSender.send(messagem);
 	
 }
     

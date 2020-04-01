@@ -70,22 +70,44 @@ public class HomeController {
 		int day = date.getDate();
 		 
 		int i=0;
+		int j=0;
+		
+		for(j = 1 ; j< 32; j++)
+		{
+			Date dateMarzo = new Date(date.getYear(),02,j);
+			dataLine+=("'"+formatter.format(dateMarzo)+"',");
+			try {
+				storicoFilter =String.valueOf(storicoService.findByData(dateMarzo).getCasiOggi());
+			
+			
+			
+			}catch (Exception e) {
+				labelLine+="'"+""+"',";
+			}
+			labelLine+="'"+storicoFilter+"',";
+		}
+		//aprile
+		if(date.getMonth()==3 ) {
 		for (i = 1; i <day ; i++)
 		{
 			StoricoCasi storico = null; 
 			Date d = new Date(date.getYear(),date.getMonth(),i);
-			System.out.print("instanza date ===================" +new  Date());
-			System.out.print("data get Date ===================" +d);
+//			System.out.print("instanza date ===================" +new  Date());
+//			System.out.print("data get Date ===================" +d);
 			dataLine+=("'"+formatter.format(d)+"',");
+			
+			List<StoricoCasi> listStoricoCasis=storicoService.findAll();
+			
 			try {
 			storicoFilter =String.valueOf(storicoService.findByData(d).getCasiOggi());
-			//storicoFilter.stream().filter(st -> st.getData().getDate() == d.getDate() && st.getData().getMonth() == d.getMonth()).collect(Collectors.toList());
+			//listStoricoCasis.stream().filter(st -> st.getData().equals(obj) ).collect(Collectors.toList());
 			logger.info(storicoFilter);
 			}catch (Exception e) {
 				labelLine+="'"+""+"',";
 			}
 			labelLine+="'"+storicoFilter+"',";
 			logger.info(labelLine);
+		}
 		}
 		dataLine = dataLine.substring(0,dataLine.length()-1);
 		labelLine.substring(0, labelLine.length()-1);

@@ -64,25 +64,35 @@
 	</nav>
 	
 	--%>
-	<div class="p-3 mb-2 bg-danger text-white text-center">
-		<h4>COVID-19 Country</h4>
+	<div  style="background-image:url('top.jpg');background-repeat: no-repeat;  background-size: 100% 100%;" class="p-3 mb-2 bg-danger text-white text-center">
+		<h1 class="text-danger">COVID-19 Country</h4>
 		<p>
-			<a href="#" class="text-white bg-dark"> <p>Api from: https://github.com/javieraviles/covidAPI 
-<p>Email: a0000@live.it</p> </a>
+			<a href="#" class="text-white bg-dark"> Api from: https://github.com/javieraviles/covidAPI </a> </p>
+<p><a href="#" class="text-white bg-dark">Email: a0000@live.it</a></p>
 		</p>
 		<div>
-			<h5>
-				Totale casi : ${totale}
-				</h4>
-				<h5>
-					Totale decessi : ${decessi }
-					</h3>
-					<h5>Totale casi oggi : ${casiOggi}</h5>
+			<h3><a href="#" class="text-white bg-dark">
+				Totale casi : ${totale}</a>
+				</h3>
+				<h3><a href="#" class="text-white bg-dark">
+					Totale decessi : ${decessi }</a>
+					</h3><a href="#" class="text-white bg-dark">
+					<h3>Totale casi oggi : ${casiOggi}</a></h3>
 		</div>
 	</div>
-    <table class="table table-striped">
+<style>
+.tableFixHead          { overflow-y: auto; height: 50%; }
+.tableFixHead thead th { position: sticky; top: 0; }
 
-		<thead>
+/* Just common table stuff. Really. */
+table  { border-collapse: collapse; width: 100%;  >
+th, td { padding: 8px 16px; }
+th     { background:#eee; }
+</style>
+<div class ="tableFixHead">
+    <table class="table table-striped ">
+
+		<thead >
 			 
 			<th>PAESE</th>
 			<th>CASI</th>
@@ -93,17 +103,13 @@
 			<th>ATTIVI</th>
 			<th>CRITICI OGGI</th>
 		</thead>
-		<tbody>
+		<tbody >
 			<c:forEach items="${listacovid}" var="user">
 			 <c:choose>
 				<c:when test="${user.country.equals('Italy')}">
          			<tr class="table-danger">
-				</c:when>
-				<c:otherwise>
-			   		<tr>
-				</c:otherwise>
-		 </c:choose>
-		            <td class="text-danger">${user.country}</td>
+         			
+         			<td class="text-danger"><a href="http://www.salute.gov.it/portale/home.html">${user.country}</a></td>
 					<td>${user.cases}</td>
 					<td class="text-success">${user.todayCases}
 					<td>${user.deaths}</td>
@@ -111,16 +117,33 @@
 					<td>${user.recovered}</td>
 					<td>${user.active}</td>
 					<td>${user.critical}</td>
+         			
+         			
+         			
+				</c:when>
+				<c:otherwise>
+			   		<tr>
+			   		 <td class="text-danger">${user.country}</td>
+					<td>${user.cases}</td>
+					<td class="text-success">${user.todayCases}
+					<td>${user.deaths}</td>
+					<td>${user.todayDeaths}</td>
+					<td>${user.recovered}</td>
+					<td>${user.active}</td>
+					<td>${user.critical}</td>
+				</c:otherwise>
+		 </c:choose>
+		           
 
 
 					<!-- 	<td><a href="modifica/${user.id} ">modifica</a> </td>
 		<td><a href="elimina?id=${user.id} ">elimina</a> </td>
 		-->
-
 				</tr>
 			</c:forEach>
 		</tbody>
 	</table>
+	</div>
 	<!-- <a href ="inserisci"><button type="button" class="btn btn-outline-primary">Inserisci un messaggio</button></a> -->
 
 	<div class="chart-container"

@@ -2,6 +2,13 @@ package configMVC.model;
 
 public class Countries {
 
+	@Override
+	public String toString() {
+		return "Countries [id=" + id + ", country=" + country + ", cases=" + cases + ", todayCases=" + todayCases
+				+ ", deaths=" + deaths + ", todayDeaths=" + todayDeaths + ", recovered=" + recovered + ", active="
+				+ active + ", critical=" + critical + "]";
+	}
+
 	public String id;
 	public String getId() {
 		return id;
