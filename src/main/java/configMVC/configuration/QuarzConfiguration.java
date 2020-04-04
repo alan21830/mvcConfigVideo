@@ -5,6 +5,7 @@ package configMVC.configuration;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Properties;
+import java.util.stream.Collectors;
 
 import javax.mail.MessagingException;
 
@@ -78,7 +79,7 @@ public class QuarzConfiguration {
 
  
 
-	@Scheduled(cron = "0 10 22 1/1 * *")
+	@Scheduled(cron = "0 45 22 1/1 * *")
 	public void doSomething() throws MessagingException {
 		// something that should execute periodically
 		
@@ -126,11 +127,12 @@ public class QuarzConfiguration {
 		Gson gson = new Gson();
 		String response = h.execute();
 		ArrayList<Countries> listcovid = gson.fromJson(response, new TypeToken<ArrayList<Countries>>() {}.getType());
-		Countries countries = listcovid.get(1);
+		//Countries countries = listcovid.get(2);
+		Countries countries = listcovid.stream().filter(lc -> lc.getCountry().equals("Italy")).collect(Collectors.toList()).get(0);
 		storicoCasi.setData(new Date());
 		storicoCasi.setCasiOggi(countries.getTodayCases());
 		storicoRepositoryJPA.save(storicoCasi);
-		
+		System.out.println(new Date()+"save in storico_casi_oggi table "+storicoCasi.getCasiOggi());
 		htmlTable=htmlTable.replace("COUNTRY", countries.getCountry());
 		htmlTable=htmlTable.replace("CASES", String.valueOf(countries.getCases()));
 		htmlTable=htmlTable.replace("TODAYC", String.valueOf(countries.getTodayCases()));
