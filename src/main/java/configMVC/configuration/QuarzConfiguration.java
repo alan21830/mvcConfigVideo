@@ -79,7 +79,7 @@ public class QuarzConfiguration {
 
  
 
-	@Scheduled(cron = "0 45 22 1/1 * *")
+	@Scheduled(cron = "0 45 21 1/1 * *")
 	public void doSomething() throws MessagingException {
 		// something that should execute periodically
 		
@@ -142,7 +142,7 @@ public class QuarzConfiguration {
 		htmlTable=htmlTable.replace("ACTIVE", String.valueOf(countries.getActive()));
 		htmlTable=htmlTable.replace("CRITICAL", String.valueOf(countries.getCritical()));
 		
-		emailService.sendMail("a0000@live.it", "scheduled email", htmlTable);
+		//emailService.sendMail("a0000@live.it", "scheduled email", htmlTable);
 
 	}
 

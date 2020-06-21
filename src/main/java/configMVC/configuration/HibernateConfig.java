@@ -64,7 +64,7 @@ public class HibernateConfig {
 		
 		jpaProperties.put("javax.persistence.schema-generation.database.action", "none");
 		jpaProperties.put("hibernate.dialect", "org.hibernate.dialect.MySQL8Dialect");
-		jpaProperties.put("hibernate.show_sql", "true");
+		jpaProperties.put("hibernate.show_sql", "false");
 		jpaProperties.put("hibernate.format_sql","true");
 
 //		// Setting C3P0 properties

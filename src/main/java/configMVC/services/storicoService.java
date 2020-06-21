@@ -23,4 +23,14 @@ public class storicoService {
 	{
 		return storicoRepositoryJPA.findAll();
 	}
+	
+	public StoricoCasi insCaso(StoricoCasi sc)
+	{
+		return storicoRepositoryJPA.save(sc);
+	}
+	
+	public List<StoricoCasi> findDistinct()
+	{
+		return storicoRepositoryJPA.findDistinctAll();
+	}
 }

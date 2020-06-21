@@ -4,8 +4,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <html lang="en">
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<head>
+ <head>
 <!-- Required meta tags -->
 <style type="text/css">
 </style>
@@ -23,9 +22,9 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
 	integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
 	crossorigin="anonymous">
-
-
-<title>Indice</title>
+	
+ <link rel="stylesheet"
+  href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> 
 </head>
 
 <body>
@@ -67,7 +66,7 @@
 	<div  style="background-image:url('top.jpg');background-repeat: no-repeat;  background-size: 100% 100%;" class="p-3 mb-2 bg-danger text-white text-center">
 		<h1 class="text-danger">COVID-19 Country</h4>
 		<p>
-			<a href="#" class="text-white bg-dark"> Api from: https://github.com/javieraviles/covidAPI </a> </p>
+			<a href="#" class="text-white bg-dark">Thanks Api from https://github.com/novelcovid/api </a> </p>
 <p><a href="#" class="text-white bg-dark">Email: a0000@live.it</a></p>
 		</p>
 		<div>
@@ -165,7 +164,7 @@ var myChart = new Chart(ctx, {
     data: {
         labels: [${dataLine}],
         datasets: [{
-            label: 'Casi in Italia ',
+            label: 'Incremento casi in Italia giorno per giorno',
             data: [${labelLine}],
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
@@ -197,49 +196,92 @@ var myChart = new Chart(ctx, {
     }
 });
 </script>
- <%-- 
-	<script>
-var ctx = document.getElementById('myChart').getContext('2d');
-var myChart = new Chart(ctx, {
-    type: 'pie',
-    data: {
-    	labels: [${label}],
-        datasets: [{
-            
-            data: [${data}],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 1
-        }]
-    },
-    options: {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero: true
-                }
-            }]
-        }
-    }
-});
-</script>
---%>
+ 
+<hr>
+<br>
+<div class ="tableFixHead">
+<table class="table table-striped table-dark ">
 
+		<thead >
+			 
+			<th>GIORNO</th>
+			<th>INCREMENTO CASI</th>
+			 
+		</thead>
+		<tbody >
+			<c:forEach items="${listStoricocasis}" var="l">
+			<tr>
+			<td class="text-danger">${l.data}</td>
+			<td>${l.casiOggi}</td>
+			<tr>
+			</c:forEach>
+			
+			</tbody>
+			
+</table>
+			</div>
+			
+	 
 
+<div class="jumbotron jumbotron-billboard">
+	<div class="img"></div>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<h2>Inserisci nuovi casi giornalieri</h2>
+				
+			</div>
+		</div>
+	</div>
+</div>
+<section class="container">
+	<div class="portlet light bordered">
+		 <div class="portlet-title">
+		 	 
+             
+		 </div>
+		<div class="portlet-body form">
+				<form:form   modelAttribute="storicocasi"  method="post"  action="inserisci">
+				
+				<div class="form-body">
+				
+					<div class="form-group">
+						<form:label path="casiOggi">Numeri casi</form:label>
+						<form:input  type="text" id="ncasi"  class="form-control" placeholder="Numero incremento casi" path="casiOggi" />
+						 
+						
+					</div>
+				  
+				<div class="form-body">
+				
+					<div class="form-group">
+					 
+						 <form:label path="data">Data</form:label>
+						<form:input type="date" id="ndate"  class="form-control"  path="data" />
+						 
+						
+					</div>
+ 
+					
+				</div>
+			 
+				
+				<hr class="line-form">
+				
+				<div class="form-actions">
+					<input type="submit" id="btnAdd" class="btn btn-primary form-buttons" value ="inserisci" />
+					 
+						 
+					
+				</div>
+			
+				</form:form>
+			</div>
+	</div>
+</section>
+			
+			
+			
 
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
