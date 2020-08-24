@@ -4,14 +4,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <html lang="en">
- <head>
+<head>
 <!-- Required meta tags -->
 <style type="text/css">
 </style>
-<title>covid 19 realtime </title>
-<meta name="google-site-verification" content="WJ77t9ffeOPEXeavZ2bQfCtAGAKw3OdJh7MS8rSilUg" />
-<meta name="description" content="covid italia casi oggi covid  covid19realtime ">
-<link rel="author" href="https://www.facebook.com/search/top/?q=Alessandro%20La%20Selva">
+<title>covid 19 realtime</title>
+<meta name="google-site-verification"
+	content="WJ77t9ffeOPEXeavZ2bQfCtAGAKw3OdJh7MS8rSilUg" />
+<meta name="description"
+	content="covid italia casi oggi covid  covid19realtime ">
+<link rel="author"
+	href="https://www.facebook.com/search/top/?q=Alessandro%20La%20Selva">
 
 <meta charset="utf-8">
 <meta name="viewport"
@@ -22,14 +25,14 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
 	integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
 	crossorigin="anonymous">
-	
- <link rel="stylesheet"
-  href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> 
+
+<link rel="stylesheet"
+	href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 </head>
 
 <body>
 
-<%-- 
+	<%-- 
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarTogglerDemo01"
@@ -63,94 +66,125 @@
 	</nav>
 	
 	--%>
-	<div  style="background-image:url('top.jpg');background-repeat: no-repeat;  background-size: 100% 100%;" class="p-3 mb-2 bg-danger text-white text-center">
-		<h1 class="text-danger">COVID-19 Country</h4>
-		<p>
-			<a href="#" class="text-white bg-dark">Thanks Api from https://github.com/novelcovid/api </a> </p>
-<p><a href="#" class="text-white bg-dark">Email: a0000@live.it</a></p>
-		</p>
-		<div>
-			<h3><a href="#" class="text-white bg-dark">
-				Totale casi : ${totale}</a>
+	<div
+		style="background-image: url('top.jpg'); background-repeat: no-repeat; background-size: 100% 100%;"
+		class="p-3 mb-2 bg-danger text-white text-center">
+		<h1 class="text-danger">
+			COVID-19 Country
+			</h4>
+			<p>
+				<a href="#" class="text-white bg-dark">Thanks Api from
+					https://github.com/novelcovid/api </a>
+			</p>
+			<p>
+				<a href="#" class="text-white bg-dark">Email: a0000@live.it</a>
+			</p>
+			</p>
+			<div>
+				<h3>
+					<a href="#" class="text-white bg-dark"> Totale casi : ${totale}</a>
 				</h3>
-				<h3><a href="#" class="text-white bg-dark">
-					Totale decessi : ${decessi }</a>
-					</h3><a href="#" class="text-white bg-dark">
-					<h3>Totale casi oggi : ${casiOggi}</a></h3>
-		</div>
+				<h3>
+					<a href="#" class="text-white bg-dark"> Totale decessi :
+						${decessi }</a>
+				</h3>
+				<a href="#" class="text-white bg-dark">
+					<h3>Totale casi oggi : ${casiOggi}
+				</a>
+				</h3>
+			</div>
 	</div>
-<style>
-.tableFixHead          { overflow-y: auto; height: 50%; }
-.tableFixHead thead th { position: sticky; top: 0; }
+	<style>
+.tableFixHead {
+	overflow-y: auto;
+	height: 50%;
+}
+
+.tableFixHead thead th {
+	position: sticky;
+	top: 0;
+}
 
 /* Just common table stuff. Really. */
-table  { border-collapse: collapse; width: 100%;  >
-th, td { padding: 8px 16px; }
-th     { background:#eee; }
-</style>
-<div class ="tableFixHead">
-    <table class="table table-striped ">
+table {
+	border-collapse: collapse;
+	width: 100%;
+	>
+	th
+	,
+	td
+	{
+	padding
+	:
+	8px
+	16px;
+}
 
-		<thead >
-			 
-			<th>PAESE</th>
-			<th>CASI</th>
-			<th>CASI OGGI</th>
-			<th>MORTI</th>
-			<th>MORTI OGGI</th>
-			<th>RICOVERI</th>
-			<th>ATTIVI</th>
-			<th>CRITICI OGGI</th>
-		</thead>
-		<tbody >
-			<c:forEach items="${listacovid}" var="user">
-			 <c:choose>
-				<c:when test="${user.country.equals('Italy')}">
-         			<tr class="table-danger">
-         			
-         			<td class="text-danger"><a href="http://www.salute.gov.it/portale/home.html">${user.country}</a></td>
-					<td>${user.cases}</td>
-					<td class="text-success">${user.todayCases}
-					<td>${user.deaths}</td>
-					<td>${user.todayDeaths}</td>
-					<td>${user.recovered}</td>
-					<td>${user.active}</td>
-					<td>${user.critical}</td>
-         			
-         			
-         			
-				</c:when>
-				<c:otherwise>
-			   		<tr>
-			   		 <td class="text-danger">${user.country}</td>
-					<td>${user.cases}</td>
-					<td class="text-success">${user.todayCases}
-					<td>${user.deaths}</td>
-					<td>${user.todayDeaths}</td>
-					<td>${user.recovered}</td>
-					<td>${user.active}</td>
-					<td>${user.critical}</td>
-				</c:otherwise>
-		 </c:choose>
-		           
+th {
+	background: #eee;
+}
+</style>
+	<div class="tableFixHead">
+		<table class="table table-striped ">
+
+			<thead>
+
+				<th>PAESE</th>
+				<th>CASI</th>
+				<th>CASI OGGI</th>
+				<th>MORTI</th>
+				<th>MORTI OGGI</th>
+				<th>RICOVERI</th>
+				<th>ATTIVI</th>
+				<th>CRITICI OGGI</th>
+			</thead>
+			<tbody>
+				<c:forEach items="${listacovid}" var="user">
+					<c:choose>
+						<c:when test="${user.country.equals('Italy')}">
+							<tr class="table-danger">
+
+								<td class="text-danger"><a
+									href="http://www.salute.gov.it/portale/home.html">${user.country}</a></td>
+								<td>${user.cases}</td>
+								<td class="text-success">${user.todayCases}
+								<td>${user.deaths}</td>
+								<td>${user.todayDeaths}</td>
+								<td>${user.recovered}</td>
+								<td>${user.active}</td>
+								<td>${user.critical}</td>
+						</c:when>
+						<c:otherwise>
+							<tr>
+								<td class="text-danger">${user.country}</td>
+								<td>${user.cases}</td>
+								<td class="text-success">${user.todayCases}
+								<td>${user.deaths}</td>
+								<td>${user.todayDeaths}</td>
+								<td>${user.recovered}</td>
+								<td>${user.active}</td>
+								<td>${user.critical}</td>
+						</c:otherwise>
+					</c:choose>
+
 
 
 					<!-- 	<td><a href="modifica/${user.id} ">modifica</a> </td>
 		<td><a href="elimina?id=${user.id} ">elimina</a> </td>
 		-->
-				</tr>
-			</c:forEach>
-		</tbody>
-	</table>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
 	</div>
 	<!-- <a href ="inserisci"><button type="button" class="btn btn-outline-primary">Inserisci un messaggio</button></a> -->
 
 	<div class="chart-container"
-		style="position: relative; height: 100%; width:100%">
+		style="position: relative; height: 100%; width: 100%">
 		<canvas id="myChartDate"></canvas>
 	</div>
-	 
-<!--  	<div class="chart-container"
+
+	<!--  	<div class="chart-container"
 		style="position: relative; height: 100%; width: 100%;">
 		<canvas id="myChart" width="90%" height="100%"></canvas>
 	</div>
@@ -196,92 +230,124 @@ var myChart = new Chart(ctx, {
     }
 });
 </script>
- 
-<hr>
-<br>
-<div class ="tableFixHead">
-<table class="table table-striped table-dark ">
 
-		<thead >
-			 
-			<th>GIORNO</th>
-			<th>INCREMENTO CASI</th>
-			 
-		</thead>
-		<tbody >
-			<c:forEach items="${listStoricocasis}" var="l">
-			<tr>
-			<td class="text-danger">${l.data}</td>
-			<td>${l.casiOggi}</td>
-			<tr>
-			</c:forEach>
-			
+	<hr>
+	<br>
+	<div class="tableFixHead">
+		<table class="table table-striped table-dark ">
+
+			<thead>
+
+				<th>GIORNO</th>
+				<th>INCREMENTO CASI</th>
+
+			</thead>
+			<tbody>
+				<c:forEach items="${listapaginatas}" var="l">
+					<tr>
+						<td class="text-danger">${l.data}</td>
+						<td>${l.casiOggi}</td>
+					<tr>
+				</c:forEach>
+
 			</tbody>
-			
-</table>
-			</div>
-			
-	 
 
-<div class="jumbotron jumbotron-billboard">
-	<div class="img"></div>
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-12">
-				<h2>Inserisci nuovi casi giornalieri</h2>
-				
+		</table>
+
+	</div>
+	<br>
+
+	<c:set var="paginacorrente" scope="session" value="${page}" />
+	<nav aria-label="...">
+		<ul class="pagination">
+
+			<c:forEach begin="0" end="${tot}" varStatus="myIndex">
+				<c:choose>
+					<c:when test="${myIndex.index == 1}">
+						<li class="page-item"><a class="page-link"
+							href="?page=${paginacorrente - 1}" tabindex="-1">Previous</a></li>
+							<li class="page-item"><a class="page-link"
+							href="?page=${myIndex.index}">${myIndex.index} </a></li>
+					</c:when>
+					
+					<c:when test="${myIndex.index } == ${paginacorrente}">
+						<li class="page-item"><a class="page-link"
+							href="?page=${myIndex.index}">${myIndex.index}<span
+								class="sr-only">(current)</span></a></li>
+					</c:when>
+					
+					<c:otherwise>
+						<li class="page-item"><a class="page-link"
+							href="?page=${myIndex.index}">${myIndex.index}</a></li>
+					</c:otherwise>
+				</c:choose>
+			</c:forEach>
+			<li class="page-item"><a class="page-link"
+				href="?page=${paginacorrente + 1}">Next</a></li>
+		</ul>
+	</nav>
+ 
+
+
+	<div class="jumbotron jumbotron-billboard">
+		<div class="img"></div>
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<h2>Inserisci nuovi casi giornalieri</h2>
+
+				</div>
 			</div>
 		</div>
 	</div>
-</div>
-<section class="container">
-	<div class="portlet light bordered">
-		 <div class="portlet-title">
-		 	 
-             
-		 </div>
-		<div class="portlet-body form">
-				<form:form   modelAttribute="storicocasi"  method="post"  action="inserisci">
-				
-				<div class="form-body">
-				
-					<div class="form-group">
-						<form:label path="casiOggi">Numeri casi</form:label>
-						<form:input  type="text" id="ncasi"  class="form-control" placeholder="Numero incremento casi" path="casiOggi" />
-						 
-						
-					</div>
-				  
-				<div class="form-body">
-				
-					<div class="form-group">
-					 
-						 <form:label path="data">Data</form:label>
-						<form:input type="date" id="ndate"  class="form-control"  path="data" />
-						 
-						
-					</div>
- 
-					
-				</div>
-			 
-				
-				<hr class="line-form">
-				
-				<div class="form-actions">
-					<input type="submit" id="btnAdd" class="btn btn-primary form-buttons" value ="inserisci" />
-					 
-						 
-					
-				</div>
-			
+	<section class="container">
+		<div class="portlet light bordered">
+			<div class="portlet-title"></div>
+			<div class="portlet-body form">
+				<form:form modelAttribute="storicocasi" method="post"
+					action="inserisci">
+
+					<div class="form-body">
+
+						<div class="form-group">
+							<form:label path="casiOggi">Numeri casi</form:label>
+							<form:input type="text" id="ncasi" class="form-control"
+								placeholder="Numero incremento casi" path="casiOggi" />
+
+
+						</div>
+
+						<div class="form-body">
+
+							<div class="form-group">
+
+								<form:label path="data">Data</form:label>
+								<form:input type="date" id="ndate" class="form-control"
+									path="data" />
+
+
+							</div>
+
+
+						</div>
+
+
+						<hr class="line-form">
+
+						<div class="form-actions">
+							<input type="submit" id="btnAdd"
+								class="btn btn-primary form-buttons" value="inserisci" />
+
+
+
+						</div>
 				</form:form>
 			</div>
-	</div>
-</section>
-			
-			
-			
+		</div>
+	</section>
+
+
+
 
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -298,6 +364,6 @@ var myChart = new Chart(ctx, {
 		crossorigin="anonymous"></script>
 
 
- 
+
 </body>
 </html>

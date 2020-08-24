@@ -23,6 +23,8 @@ import org.json.JSONObject;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -43,8 +45,8 @@ import configMVC.model.StoricoCasi;
 import configMVC.model.Utenti;
 import configMVC.repository.StoricoRepositoryJPA;
 import configMVC.repository.UtentiRepository;
+import configMVC.services.StoricoService;
 import configMVC.services.UtentiServices;
-import configMVC.services.storicoService;
 
 
 @Controller
@@ -59,10 +61,12 @@ public class HomeController {
 	UtentiServices utentiServices;
 
 
-	@Autowired storicoService storicoService;
+	@Autowired 
+	StoricoService storicoService;
 
-	@GetMapping(value="/")
-	public String home(Model model)//,HttpServletRequest request  )
+	@GetMapping(value="/" )
+	public String home(Model model, @RequestParam(value = "page" ,defaultValue = "0") int page)//,HttpServletRequest request  )
+	
 	{
 //		System.out.println("request id ---------------------->"+request.getRemoteAddr());
 //		System.out.println("request id ---------------------->"+request.getAuthType());
@@ -72,7 +76,8 @@ public class HomeController {
 //		System.out.println("request id ---------------------->"+request.getHeader("X-Forwarded-For"));
 
 
-
+//@RequestParam (name = "page" , defaultValue ="1") int page
+		
 		String label ="";//torta
 		String data="";
 		String labelLine="";
@@ -115,14 +120,14 @@ public class HomeController {
 			try {
 				storicoFilter =String.valueOf(storicoService.findByData(d).getCasiOggi());
 				//listStoricoCasis.stream().filter(st -> st.getData().equals(obj) ).collect(Collectors.toList());
-				logger.info(storicoFilter);
+			//	logger.info(storicoFilter);
 			}catch (Exception e) {
 				labelLine+="'"+""+"',";
 			}
 			labelLine+="'"+storicoFilter+"',";
-			logger.info(labelLine);
+		//	logger.info(labelLine);
 		}
-
+//maggio
 		for (int k =1 ; k < 31 ; k++ )
 		{
 			try {
@@ -136,12 +141,40 @@ public class HomeController {
 				labelLine+="'"+""+"',";
 			}
 		}
-
-		for (int k =1 ; k < day ; k++ )
+//giugno
+		for (int k =1 ; k < 31 ; k++ )
 		{
 			try {
 			StoricoCasi storico = null; 
 			Date d = new Date(date.getYear(),05,k);
+			dataLine+=("'"+formatter.format(d)+"',");
+
+			storicoFilter =String.valueOf(storicoService.findByData(d).getCasiOggi());
+			labelLine+="'"+storicoFilter+"',";
+			}catch (Exception e) {
+				labelLine+="'"+""+"',";
+			}
+		}
+		//luglio
+		for (int k =1 ; k < 32 ; k++ )
+		{
+			try {
+			StoricoCasi storico = null; 
+			Date d = new Date(date.getYear(),06,k);
+			dataLine+=("'"+formatter.format(d)+"',");
+
+			storicoFilter =String.valueOf(storicoService.findByData(d).getCasiOggi());
+			labelLine+="'"+storicoFilter+"',";
+			}catch (Exception e) {
+				labelLine+="'"+""+"',";
+			}
+		}
+		//agosto
+		for (int k =1 ; k < day ; k++ )
+		{
+			try {
+			StoricoCasi storico = null; 
+			Date d = new Date(date.getYear(),07,k);
 			dataLine+=("'"+formatter.format(d)+"',");
 
 			storicoFilter =String.valueOf(storicoService.findByData(d).getCasiOggi());
@@ -168,7 +201,11 @@ public class HomeController {
 		List<StoricoCasi> listStoricoCasis=storicoService.findDistinct()
 				.stream().sorted(Comparator.comparing(StoricoCasi::getData))
 				.collect(Collectors.toList());
-				
+		
+		Page<StoricoCasi> listaPaginata = storicoService.findPageSort(page, 30);
+		List<StoricoCasi> listapaginatas= listaPaginata.getContent();
+		int tot=listaPaginata.getTotalPages();
+		 
 
 
 
@@ -194,6 +231,9 @@ public class HomeController {
 		}
 		
 		StoricoCasi storicocasi = new StoricoCasi();
+		model.addAttribute("page",page );
+		model.addAttribute("tot",tot );
+		model.addAttribute("listapaginatas",listapaginatas );
 		model.addAttribute("listStoricocasis",listStoricoCasis );
 		label = label.substring(0,label.length()-1);
 		data = data.substring(0,data.length()-1);
