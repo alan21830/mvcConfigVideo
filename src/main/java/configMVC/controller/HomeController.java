@@ -142,7 +142,7 @@ public class HomeController {
 		{
 			try {
 				StoricoCasi storico = null; 
-				Date d = new Date(date.getYear(),04,k);
+				Date d = new Date(date.getYear()-1,04,k);
 				dataLine+=("'"+formatter.format(d)+"',");
 
 				//storicoFilter =String.valueOf(storicoService.findByData(d).getCasiOggi());
@@ -153,21 +153,21 @@ public class HomeController {
 			}catch (Exception e) {
 				labelLine+="'"+""+"',";
 			}
-			labelLine+="'"+storicoFilter+"',";
+			
 		}
 		//giugno
 		for (int k =1 ; k < 31 ; k++ )
 		{
 			try {
 				StoricoCasi storico = null; 
-				Date d = new Date(date.getYear(),05,k);
+				Date d = new Date(date.getYear()-1,5,k);
 				dataLine+=("'"+formatter.format(d)+"',");
 
 				//storicoFilter =String.valueOf(storicoService.findByData(d).getCasiOggi());
 				storicoFilter =String.valueOf(
 						sc.stream().filter(s->s.getData().compareTo(d)==0)
 						.collect(Collectors.toList()).get(0).casiOggi);
-				labelLine+="'"+storicoFilter+"',";
+				
 			}catch (Exception e) {
 				labelLine+="'"+""+"',";
 			}
@@ -178,7 +178,7 @@ public class HomeController {
 		{
 			try {
 				StoricoCasi storico = null; 
-				Date d = new Date(date.getYear(),06,k);
+				Date d = new Date(date.getYear()-1,06,k);
 				dataLine+=("'"+formatter.format(d)+"',");
 
 			//	storicoFilter =String.valueOf(storicoService.findByData(d).getCasiOggi());
@@ -186,18 +186,18 @@ public class HomeController {
 				storicoFilter =String.valueOf(
 						sc.stream().filter(s->s.getData().compareTo(d)==0)
 						.collect(Collectors.toList()).get(0).casiOggi);
-				labelLine+="'"+storicoFilter+"',";
+				
 			}catch (Exception e) {
 				labelLine+="'"+""+"',";
 			}
 			labelLine+="'"+storicoFilter+"',";
 		}
 		//agosto
-		for (int k =1 ; k < day ; k++ )
+		for (int k =1 ; k < 32 ; k++ )
 		{
 			try {
 				StoricoCasi storico = null; 
-				Date d = new Date(date.getYear(),07,k);
+				Date d = new Date(date.getYear()-1,07,k);
 				dataLine+=("'"+formatter.format(d)+"',");
 
 				//storicoFilter =String.valueOf(storicoService.findByData(d).getCasiOggi());
@@ -210,7 +210,78 @@ public class HomeController {
 				labelLine+="'"+""+"',";
 			}
 		}
+//set
+		for (int k =1 ; k < 31 ; k++ )
+		{
+			try {
+				StoricoCasi storico = null; 
+				Date d = new Date(date.getYear()-1,8,k);
+				dataLine+=("'"+formatter.format(d)+"',");
 
+				//storicoFilter =String.valueOf(storicoService.findByData(d).getCasiOggi());
+				
+				storicoFilter =String.valueOf(
+						sc.stream().filter(s->s.getData().compareTo(d)==0)
+						.collect(Collectors.toList()).get(0).casiOggi);
+				labelLine+="'"+storicoFilter+"',";
+			}catch (Exception e) {
+				labelLine+="'"+""+"',";
+			}
+		}
+		//ottob
+		for (int k =1 ; k < 32 ; k++ )
+		{
+			try {
+				StoricoCasi storico = null; 
+				Date d = new Date(date.getYear()-1,9,k);
+				dataLine+=("'"+formatter.format(d)+"',");
+
+				//storicoFilter =String.valueOf(storicoService.findByData(d).getCasiOggi());
+				
+				storicoFilter =String.valueOf(
+						sc.stream().filter(s->s.getData().compareTo(d)==0)
+						.collect(Collectors.toList()).get(0).casiOggi);
+				labelLine+="'"+storicoFilter+"',";
+			}catch (Exception e) {
+				labelLine+="'"+""+"',";
+			}
+		}
+		//nov
+		for (int k =1 ; k < day ; k++ )
+		{
+			try {
+				StoricoCasi storico = null; 
+				Date d = new Date(date.getYear()-1,10,k);
+				dataLine+=("'"+formatter.format(d)+"',");
+
+				//storicoFilter =String.valueOf(storicoService.findByData(d).getCasiOggi());
+				
+				storicoFilter =String.valueOf(
+						sc.stream().filter(s->s.getData().compareTo(d)==0)
+						.collect(Collectors.toList()).get(0).casiOggi);
+				labelLine+="'"+storicoFilter+"',";
+			}catch (Exception e) {
+				labelLine+="'"+""+"',";
+			}
+		}
+		//dic
+		for (int k =1 ; k < day ; k++ )
+		{
+			try {
+				StoricoCasi storico = null; 
+				Date d = new Date(date.getYear()-1,11 ,k);
+				dataLine+=("'"+formatter.format(d)+"',");
+
+				//storicoFilter =String.valueOf(storicoService.findByData(d).getCasiOggi());
+				
+				storicoFilter =String.valueOf(
+						sc.stream().filter(s->s.getData().compareTo(d)==0)
+						.collect(Collectors.toList()).get(0).casiOggi);
+				labelLine+="'"+storicoFilter+"',";
+			}catch (Exception e) {
+				labelLine+="'"+""+"',";
+			}
+		}
 		dataLine = dataLine.substring(0,dataLine.length()-1);
 		labelLine.substring(0, labelLine.length()-1);
 
