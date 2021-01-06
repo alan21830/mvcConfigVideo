@@ -66,18 +66,18 @@ public class HomeController {
 
 	@GetMapping(value="/" )
 	public String home(Model model, @RequestParam(value = "page" ,defaultValue = "0") int page)//,HttpServletRequest request  )
-	
+
 	{
-//		System.out.println("request id ---------------------->"+request.getRemoteAddr());
-//		System.out.println("request id ---------------------->"+request.getAuthType());
-//		System.out.println("request id ---------------------->"+request.getContextPath());
-//		System.out.println("request id ---------------------->"+request.getHeader("HTTP_X_FORWARDED_FOR"));
-//		System.out.println("request id ---------------------->"+request.getHeader("Client-IP"));
-//		System.out.println("request id ---------------------->"+request.getHeader("X-Forwarded-For"));
+		//		System.out.println("request id ---------------------->"+request.getRemoteAddr());
+		//		System.out.println("request id ---------------------->"+request.getAuthType());
+		//		System.out.println("request id ---------------------->"+request.getContextPath());
+		//		System.out.println("request id ---------------------->"+request.getHeader("HTTP_X_FORWARDED_FOR"));
+		//		System.out.println("request id ---------------------->"+request.getHeader("Client-IP"));
+		//		System.out.println("request id ---------------------->"+request.getHeader("X-Forwarded-For"));
 
 
-//@RequestParam (name = "page" , defaultValue ="1") int page
-		
+		//@RequestParam (name = "page" , defaultValue ="1") int page
+
 		String label ="";//torta
 		String data="";
 		String labelLine="";
@@ -91,13 +91,18 @@ public class HomeController {
 		int i=0;
 		int j=0;
 
+		List<StoricoCasi> sc = new ArrayList<>();
+		sc= storicoService.findAll();
+
 		for(j = 1 ; j< 32; j++)
 		{
-			Date dateMarzo = new Date(date.getYear(),02,j);
+			Date dateMarzo = new Date(date.getYear()-1,02,j);
 			dataLine+=("'"+formatter.format(dateMarzo)+"',");
 			try {
-				storicoFilter =String.valueOf(storicoService.findByData(dateMarzo).getCasiOggi());
-
+				//storicoFilter =String.valueOf(storicoService.findByData(dateMarzo).getCasiOggi());
+				storicoFilter =String.valueOf(
+						sc.stream().filter(s->s.getData().compareTo(dateMarzo)==0)
+						.collect(Collectors.toList()).get(0).casiOggi);
 
 
 			}catch (Exception e) {
@@ -110,7 +115,7 @@ public class HomeController {
 		for (i = 1; i <31 ; i++)
 		{
 			StoricoCasi storico = null; 
-			Date d = new Date(date.getYear(),03,i);
+			Date d = new Date(date.getYear()-1,03,i);
 			//			System.out.print("instanza date ===================" +new  Date());
 			//			System.out.print("data get Date ===================" +d);
 			dataLine+=("'"+formatter.format(d)+"',");
@@ -118,67 +123,89 @@ public class HomeController {
 
 
 			try {
-				storicoFilter =String.valueOf(storicoService.findByData(d).getCasiOggi());
+				//storicoFilter =String.valueOf(storicoService.findByData(d).getCasiOggi());
+				storicoFilter =String.valueOf(
+						sc.stream().filter(s->s.getData().compareTo(d)==0)
+						.collect(Collectors.toList()).get(0).casiOggi);
+
+				
 				//listStoricoCasis.stream().filter(st -> st.getData().equals(obj) ).collect(Collectors.toList());
-			//	logger.info(storicoFilter);
+				//	logger.info(storicoFilter);
 			}catch (Exception e) {
 				labelLine+="'"+""+"',";
 			}
 			labelLine+="'"+storicoFilter+"',";
-		//	logger.info(labelLine);
+			//	logger.info(labelLine);
 		}
-//maggio
+		//maggio
 		for (int k =1 ; k < 31 ; k++ )
 		{
 			try {
-			StoricoCasi storico = null; 
-			Date d = new Date(date.getYear(),04,k);
-			dataLine+=("'"+formatter.format(d)+"',");
+				StoricoCasi storico = null; 
+				Date d = new Date(date.getYear(),04,k);
+				dataLine+=("'"+formatter.format(d)+"',");
 
-			storicoFilter =String.valueOf(storicoService.findByData(d).getCasiOggi());
-			labelLine+="'"+storicoFilter+"',";
+				//storicoFilter =String.valueOf(storicoService.findByData(d).getCasiOggi());
+				storicoFilter =String.valueOf(
+						sc.stream().filter(s->s.getData().compareTo(d)==0)
+						.collect(Collectors.toList()).get(0).casiOggi);
+				labelLine+="'"+storicoFilter+"',";
 			}catch (Exception e) {
 				labelLine+="'"+""+"',";
 			}
+			labelLine+="'"+storicoFilter+"',";
 		}
-//giugno
+		//giugno
 		for (int k =1 ; k < 31 ; k++ )
 		{
 			try {
-			StoricoCasi storico = null; 
-			Date d = new Date(date.getYear(),05,k);
-			dataLine+=("'"+formatter.format(d)+"',");
+				StoricoCasi storico = null; 
+				Date d = new Date(date.getYear(),05,k);
+				dataLine+=("'"+formatter.format(d)+"',");
 
-			storicoFilter =String.valueOf(storicoService.findByData(d).getCasiOggi());
-			labelLine+="'"+storicoFilter+"',";
+				//storicoFilter =String.valueOf(storicoService.findByData(d).getCasiOggi());
+				storicoFilter =String.valueOf(
+						sc.stream().filter(s->s.getData().compareTo(d)==0)
+						.collect(Collectors.toList()).get(0).casiOggi);
+				labelLine+="'"+storicoFilter+"',";
 			}catch (Exception e) {
 				labelLine+="'"+""+"',";
 			}
+			labelLine+="'"+storicoFilter+"',";
 		}
 		//luglio
 		for (int k =1 ; k < 32 ; k++ )
 		{
 			try {
-			StoricoCasi storico = null; 
-			Date d = new Date(date.getYear(),06,k);
-			dataLine+=("'"+formatter.format(d)+"',");
+				StoricoCasi storico = null; 
+				Date d = new Date(date.getYear(),06,k);
+				dataLine+=("'"+formatter.format(d)+"',");
 
-			storicoFilter =String.valueOf(storicoService.findByData(d).getCasiOggi());
-			labelLine+="'"+storicoFilter+"',";
+			//	storicoFilter =String.valueOf(storicoService.findByData(d).getCasiOggi());
+				
+				storicoFilter =String.valueOf(
+						sc.stream().filter(s->s.getData().compareTo(d)==0)
+						.collect(Collectors.toList()).get(0).casiOggi);
+				labelLine+="'"+storicoFilter+"',";
 			}catch (Exception e) {
 				labelLine+="'"+""+"',";
 			}
+			labelLine+="'"+storicoFilter+"',";
 		}
 		//agosto
 		for (int k =1 ; k < day ; k++ )
 		{
 			try {
-			StoricoCasi storico = null; 
-			Date d = new Date(date.getYear(),07,k);
-			dataLine+=("'"+formatter.format(d)+"',");
+				StoricoCasi storico = null; 
+				Date d = new Date(date.getYear(),07,k);
+				dataLine+=("'"+formatter.format(d)+"',");
 
-			storicoFilter =String.valueOf(storicoService.findByData(d).getCasiOggi());
-			labelLine+="'"+storicoFilter+"',";
+				//storicoFilter =String.valueOf(storicoService.findByData(d).getCasiOggi());
+				
+				storicoFilter =String.valueOf(
+						sc.stream().filter(s->s.getData().compareTo(d)==0)
+						.collect(Collectors.toList()).get(0).casiOggi);
+				labelLine+="'"+storicoFilter+"',";
 			}catch (Exception e) {
 				labelLine+="'"+""+"',";
 			}
@@ -201,11 +228,11 @@ public class HomeController {
 		List<StoricoCasi> listStoricoCasis=storicoService.findDistinct()
 				.stream().sorted(Comparator.comparing(StoricoCasi::getData))
 				.collect(Collectors.toList());
-		
+
 		Page<StoricoCasi> listaPaginata = storicoService.findPageSort(page, 30);
 		List<StoricoCasi> listapaginatas= listaPaginata.getContent();
 		int tot=listaPaginata.getTotalPages();
-		 
+
 
 
 
@@ -227,9 +254,9 @@ public class HomeController {
 				decessi += countries.getDeaths();
 				casiOggi += countries.getTodayCases();
 			}
-			
+
 		}
-		
+
 		StoricoCasi storicocasi = new StoricoCasi();
 		model.addAttribute("page",page );
 		model.addAttribute("tot",tot );
@@ -247,9 +274,9 @@ public class HomeController {
 		model.addAttribute("labelLine",labelLine);
 		model.addAttribute("storicocasi",storicocasi);
 		return "home";
-		
+
 	}
-	 
+
 	@PostMapping("/inserisci")
 	public String insert(@ModelAttribute("storicocasi") StoricoCasi sc ,Model model )
 	{
@@ -351,8 +378,8 @@ public class HomeController {
 	}
 	@InitBinder
 	public void bindingPreparation(WebDataBinder binder) {
-	  DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-	  CustomDateEditor orderDateEditor = new CustomDateEditor(dateFormat, true);
-	  binder.registerCustomEditor(Date.class, orderDateEditor);
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		CustomDateEditor orderDateEditor = new CustomDateEditor(dateFormat, true);
+		binder.registerCustomEditor(Date.class, orderDateEditor);
 	}
 }
